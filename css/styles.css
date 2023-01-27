@@ -81,7 +81,9 @@ img{
 nav{
   display: flex;
   text-align: center;
-  
+ 
+
+   
 }
 
 .logo {
@@ -126,6 +128,24 @@ nav{
   letter-spacing: 0.02em;
   color: var(--main-text-color);
   text-decoration: none;  
+  position: relative;
+   transition-property: color;
+ transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  
+}
+
+.active::after{
+  content:"";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom:-1px;
+  width: 100%;
+  background: #404BBF;
+  border-radius: 2px;
+  height: 4px;
 }
 
 .contact-nav{
@@ -153,6 +173,8 @@ nav{
 .nav:hover,
 .nav:focus {
   color: #4d5ae5;
+  
+
 }
 
 .section{
@@ -171,6 +193,10 @@ nav{
   color: var(--secondary-text-color);
   text-decoration: none;
   display: inline-block;
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 
@@ -213,6 +239,9 @@ nav{
   cursor: pointer;
   padding: 16px 32px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition-property:background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
  
   
 }
@@ -357,6 +386,9 @@ margin-bottom: 16px;
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  transition-property:background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -392,6 +424,9 @@ margin-bottom: 16px;
   border: 1px solid #E7E9FC;
   border-radius: 4px;
   padding: 12px 24px;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:is(:hover , :focus){
@@ -429,10 +464,37 @@ margin-bottom: 24px;
 
 }
 
+.section-top-text{
+position: absolute;
+top: 0;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.5;
+letter-spacing: 0.02em;
+color: #F4F4FD;
+background-color: #4D5AE5;
+padding: 40px 32px 164px 32px;
+height: 100%;
+transform: translateY(100%);
+transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.section-top-wrap{
+ position: relative;
+ overflow: hidden;
+}
+.item-interactive:is(:hover,:focus) .section-top-text {
+ transform: translateY(0%);
+}
+
 .cards-interactive{
   text-decoration: none;
   color: #2E2F42;
   display: block;
+      transition-property:box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
  
 }
 
@@ -462,6 +524,9 @@ height: 88px;
 
 .clients-logo{
 fill:var(--color1, #8e8f99);
+transition-property:fill;
+transition-duration: 250ms;
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -473,6 +538,9 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 4px;
+transition-property:border;
+transition-duration: 250ms;
+transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -498,16 +566,64 @@ border-radius: 4px;
 }
 
 .section-soc-link{
-    width: 100%;
-    height: 100%;
-    background-color: var(--accent-color);
-    display: flex;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-color);
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  transition-property:background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .section-soc-link:is(:hover, :focus){
   background-color:var(--active-color);
 }
 
+
+/* MODAL */
+.backdrop{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),visibility 250ms cubic-bezier(0.4, 0, 0.2, 1) ;
+}
+.modal {
+width: 408px;
+min-height: 576px;
+background-color: #FCFCFC;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+border-radius: 4px;
+position: absolute;
+top:50%;
+left: 50%;
+transform: translate(-50%, -50%);
+padding: 24px 24px;
+
+
+}
+
+.backdrop .is-hidden .modal{
+
+}
+.modal-close {
+  width: 24px;
+  height: 24px;
+  background: #E7E9FC;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+}
+.is-hidden{
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+}
